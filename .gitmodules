@@ -1,0 +1,3 @@
+[submodule "undici"]
+	path = undici
+	url = git@github.com:nodejs/undici.git

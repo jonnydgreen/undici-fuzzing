@@ -1,0 +1,29 @@
+{
+  "name": "undici-fuzzing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "homepage": "https://github.com/jonnydgreen/undici-fuzzing#readme",
+  "bugs": {
+    "url": "https://github.com/jonnydgreen/undici-fuzzing/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonnydgreen/undici-fuzzing.git"
+  },
+  "license": "MIT",
+  "author": "Jonny Green <hello@jonnydgreen.com>",
+  "scripts": {
+    "lint": "standard | snazzy"
+  },
+  "devDependencies": {
+    "jsfuzz": "^1.0.15",
+    "snazzy": "^9.0.0",
+    "standard": "^16.0.3"
+  },
+  "standard": {
+    "ignore": [
+      "undici"
+    ]
+  }
+}
