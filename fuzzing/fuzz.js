@@ -7,8 +7,11 @@ const clientFuzzFnMap = require('./client')
 
 const netServer = net.createServer((socket) => {
   socket.on('data', (data) => {
+    // Select server fuzz fn based on the buf input
     const serverFuzzFns = Object.entries(serverFuzzFnMap)
+    // TODO: make this deterministic based on the input data somehow
     const [, serverFuzzFn] = serverFuzzFns[Math.floor(Math.random() * serverFuzzFns.length)]
+
     serverFuzzFn(socket, data)
   })
 })
@@ -24,8 +27,11 @@ async function fuzz (buf) {
   // Wait for net server to be ready
   await waitForNetServer
 
+  // Select client fuzz fn based on the buf input
   const clientFuzzFns = Object.entries(clientFuzzFnMap)
-  const [clientFuzzFnName, clientFuzzFn] = clientFuzzFns[Math.floor(Math.random() * clientFuzzFns.length)]
+  const index = parseInt(buf.toString('hex') || '0', 16) % clientFuzzFns.length
+  const [clientFuzzFnName, clientFuzzFn] = clientFuzzFns[index]
+
   try {
     await clientFuzzFn(netServer, buf)
   } catch (error) {

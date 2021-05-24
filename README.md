@@ -12,16 +12,10 @@ cd undici && npm i
 
 ## Usage
 
-In the folder `fuzzing`, you will find all the different types of fuzzing operations to be run. When run, these will run indefinitely and will output coverage reports to the `coverage` folder.
+In the folder `fuzzing`, you will find all the different types of fuzzing operations to be run. When run, these will be run with a timeout of 5 minutes.
 
 To trigger a run:
 
 ```sh
-npx jsfuzz fuzzing/<fuzz-definition>.js corpus
-```
-
-For a request options test:
-
-```sh
-npx jsfuzz fuzzing/request-options.js corpus
+npx jsfuzz fuzzing/fuzz.js corpus
 ```
